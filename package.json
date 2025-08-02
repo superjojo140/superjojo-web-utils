@@ -1,0 +1,20 @@
+{
+  "name": "superjojo-web-utils",
+  "version": "0.0.1",
+  "description": "Framework for building fast and easy web micorservices",
+  "homepage": "https://github.com/superjojo140/superjojo-web-utils#readme",
+  "bugs": {
+    "url": "https://github.com/superjojo140/superjojo-web-utils/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superjojo140/superjojo-web-utils.git"
+  },
+  "license": "MIT",
+  "author": "superjojo140",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

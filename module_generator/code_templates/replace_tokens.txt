@@ -1,0 +1,11 @@
+xxxEntityxxx
+xxxentityxxx
+xxxEntityDisplayNamexxx
+xxxEntityPropertiesxxx (id is already set)
+
+
+
+
+
+#Define
+process.env.BASE_URL
