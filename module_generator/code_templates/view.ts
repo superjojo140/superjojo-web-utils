@@ -6,8 +6,6 @@ import Modal from "bootstrap/js/dist/modal.ts";
 
 export default class xxxEntityxxxView {
 
-    //TODO: Fix all display texts and html ids
-
     table: TableSortable;
     modalElem: HTMLElement;
     modal: Modal;
@@ -24,7 +22,7 @@ export default class xxxEntityxxxView {
 
         let tableColumns = {
             id: "Id",
-            //TODO: add properties
+            xxxEntityPropertiesTablexxx : "",
         }
         let searchInput = SwuDom.querySelectorAsInput("#swu_xxxentityxxx_filter_input");
         let searchInputClear = SwuDom.querySelectorAsInput("#swu_xxxentityxxx_filter_clear_button");

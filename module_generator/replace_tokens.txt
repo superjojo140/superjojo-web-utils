@@ -6,6 +6,7 @@
 ✅xxxEntityPropertiesInputsHtmlxxx in HTML
 ✅let xxxsetPropertyCodexxx;
 ✅let xxxgetPropertyCodexxx;
+ xxxEntityPropertiesInputsHtmlxxx : "",
 ✅ ->foreach-> xxxpropertyNamexxx
 
 

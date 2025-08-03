@@ -1,16 +1,18 @@
-export class TableSortable {
-    table;
-    options = {
-        data: [],
-        columns: {},
-        rowsPerPage: undefined,
-        pagination: true,
-        nextText: "<i class='fas fa-angle-right'>",
-        prevText: "<i class='fas fa-angle-left'>",
-        searchField: undefined,
-        tableDidUpdate: undefined,
-    };
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TableSortable = void 0;
+class TableSortable {
     constructor(selector, columns, searchInput, searchClearBtn, rowsPerPage = 10, onUpdate) {
+        this.options = {
+            data: [],
+            columns: {},
+            rowsPerPage: 0,
+            pagination: true,
+            nextText: "<i class='fas fa-angle-right'>",
+            prevText: "<i class='fas fa-angle-left'>",
+            searchField: null,
+            tableDidUpdate: undefined,
+        };
         this.options.columns = columns;
         this.options.searchField = searchInput;
         this.options.rowsPerPage = rowsPerPage;
@@ -43,3 +45,4 @@ export class TableSortable {
         this.table.sortData(sort.currentCol, sort.dir);
     }
 }
+exports.TableSortable = TableSortable;

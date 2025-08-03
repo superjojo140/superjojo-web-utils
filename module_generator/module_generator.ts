@@ -74,6 +74,7 @@ async function promptForEntityDisplayName() {
         let setValueTs = '';
         let getValueTs = '';
         let interfaceProperties = '';
+        let tableProperties = '';
         for (const propertyName of propertyNames) {
             propertiesHtml += `
                 <div class="row">
@@ -91,9 +92,11 @@ async function promptForEntityDisplayName() {
             setValueTs += `    SwuDom.querySelectorAsInput("#swu_${entityName.toLowerCase()}_modal_form_${propertyName}").value = ${entityName}Data.${propertyName};\n`;
 
             interfaceProperties += `    ${propertyName}: string;\n`;
+            tableProperties += `    ${propertyName}: ${propertyName},\n`;
 
         }
         content = content.replace(/xxxEntityInterfacePropertiesxxx/g, interfaceProperties);
+        content = content.replace(/xxxEntityPropertiesTablexxx : "",/g, tableProperties);
         content = content.replace(/let xxxsetPropertyCodexxx;/g, setValueTs);
         content = content.replace(/let xxxgetPropertyCodexxx;/g, getValueTs);
         content = content.replace(/xxxEntityPropertiesInputsHtmlxxx/g, propertiesHtml);
