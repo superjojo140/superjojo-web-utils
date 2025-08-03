@@ -16,5 +16,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/chalk": "^0.4.31",
+    "@types/inquirer": "^9.0.8",
+    "@types/node": "^24.1.0",
+    "@types/sweetalert": "^1.1.28",
+    "bootstrap": "^5.3.7",
+    "chalk": "^5.4.1",
+    "inquirer": "^12.9.0",
+    "sweetalert": "^2.1.2"
   }
 }

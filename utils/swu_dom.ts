@@ -1,4 +1,6 @@
-export class SuperjojoUtilsDom {
+import { SwuFetch } from "./swu_fetch.ts";
+
+export class SwuDom {
 
 
     /**
@@ -25,7 +27,7 @@ export class SuperjojoUtilsDom {
     }
 
     static slideUp = (target: HTMLElement | string, duration = 500) => {
-        let elem = (typeof (target) == "string") ? SuperjojoUtilsDom.querySelector(target) : target;
+        let elem = (typeof (target) == "string") ? SwuDom.querySelector(target) : target;
 
         elem.style.transitionProperty = 'height, margin, padding';
         elem.style.transitionDuration = duration + 'ms';
@@ -53,7 +55,7 @@ export class SuperjojoUtilsDom {
     }
 
     static slideDown = (target: HTMLElement | string, duration = 500) => {
-        let elem = (typeof (target) == "string") ? SuperjojoUtilsDom.querySelector(target) : target;
+        let elem = (typeof (target) == "string") ? SwuDom.querySelector(target) : target;
 
         elem.style.removeProperty('display');
         let display = window.getComputedStyle(elem).display;
@@ -84,29 +86,29 @@ export class SuperjojoUtilsDom {
     }
 
     static slideToState = (target: HTMLElement | string, state: boolean, duration = 500) => {
-        return state ? SuperjojoUtilsDom.slideDown(target, duration) : SuperjojoUtilsDom.slideUp(target, duration)
+        return state ? SwuDom.slideDown(target, duration) : SwuDom.slideUp(target, duration)
     }
 
     static slideToggle = (target: HTMLElement | string, duration = 500) => {
-        let elem = (typeof (target) == "string") ? SuperjojoUtilsDom.querySelector(target) : target;
+        let elem = (typeof (target) == "string") ? SwuDom.querySelector(target) : target;
 
         if (window.getComputedStyle(elem).display === 'none') {
-            return SuperjojoUtilsDom.slideDown(elem, duration);
+            return SwuDom.slideDown(elem, duration);
         } else {
-            return SuperjojoUtilsDom.slideUp(elem, duration);
+            return SwuDom.slideUp(elem, duration);
         }
     }
 
     static show(selector: string) {
-        SuperjojoUtilsDom.querySelector(selector).style.removeProperty("display");
+        SwuDom.querySelector(selector).style.removeProperty("display");
     }
 
     static hide(selector: string) {
-        SuperjojoUtilsDom.querySelector(selector).style.display = "none";
+        SwuDom.querySelector(selector).style.display = "none";
     }
 
     static setVisibility(selector: string, state: boolean) {
-        state ? SuperjojoUtilsDom.show(selector) : SuperjojoUtilsDom.hide(selector);
+        state ? SwuDom.show(selector) : SwuDom.hide(selector);
     }
 
     /**
@@ -115,8 +117,8 @@ export class SuperjojoUtilsDom {
      * @param selector Selector of the element to append the loaded html, @default "body"
      */
     static async loadHtml(path, selector = "body") {
-        let html = await SuperjojoUtilsFetch.getText(path);
-        SuperjojoUtilsDom.querySelector(selector).insertAdjacentHTML("beforeend", html);
+        let html = await SwuFetch.getText(path);
+        SwuDom.querySelector(selector).insertAdjacentHTML("beforeend", html);
     }
 
     /**

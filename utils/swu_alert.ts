@@ -1,4 +1,8 @@
-export class SuperjojoUtilsAlert {
+import { SwuDom } from "./swu_dom.ts";
+import { SwuHttpResponse } from "./swu_fetch.ts";
+//TODO: Load sweetalert
+
+export class SwuAlert {
 
 
     static swalToBootstrapClass = {
@@ -11,34 +15,35 @@ export class SuperjojoUtilsAlert {
     static TOAST_ID = 0;
 
     static async init() {
-        await Stubegru.dom.loadHtml("components/alert/module.html");
+        //TODO: fix this
+        await SwuDom.loadHtml("components/alert/module.html");
     }
 
-    static async alertResp(resp: StubegruHttpResponse, title?: string) {
-        let options = {} as StubegruAlertOptions;
+    static async alertResp(resp: SwuHttpResponse, title?: string) {
+        let options = {} as SwuAlertOptions;
 
         options.text = resp.message;
         options.type = resp.status as SweetAlertIcon;
         options.mode = resp.mode;
         options.title = title || resp.title;
 
-        await Alert.alert(options);
+        await SwuAlert.alert(options);
     }
 
     static async alertSimple(text: string) {
-        await Alert.alert({ text: text });
+        await SwuAlert.alert({ text: text });
     }
 
     static async alertError(error: Error) {
         console.error(error);
-        await Alert.alert({
+        await SwuAlert.alert({
             text: error.message,
             title: "Es ist ein Fehler aufgetreten",
             type: "error"
         });
     }
 
-    static alert(options: StubegruAlertOptions): Promise<boolean> {
+    static alert(options: SwuAlertOptions): Promise<boolean> {
         return new Promise(function (resolve, reject) {
 
 
@@ -52,24 +57,22 @@ export class SuperjojoUtilsAlert {
             }
 
             if (options.mode == "alert") {
-                //@ts-expect-error Uses JS-Alerts module here
                 swal(swalOptions, resolve);
             }
 
             else if (options.mode == "toast") {
-                let toastOptions = swalOptions as StubegruToastOptions;
-                toastOptions.bootstrapClass = swalToBootstrapClass[swalOptions.type];
-                Alert.showToast(toastOptions);
+                let toastOptions = swalOptions as SwuToastOptions;
+                toastOptions.bootstrapClass = SwuAlert.swalToBootstrapClass[swalOptions.type];
+                SwuAlert.showToast(toastOptions);
             }
         });
     }
 
     /**
-     * @example let confirmResp = await Alert.deleteConfirm("Element löschen", "Soll dieses Element wirklich gelöscht werden?");
+     * @example let confirmResp = await SwuAlert.deleteConfirm("Element löschen", "Soll dieses Element wirklich gelöscht werden?");
      */
     static deleteConfirm(title: string, text: string, confirmButtonText = "Löschen"): Promise<boolean> {
         return new Promise(function (resolve, reject) {
-            //@ts-expect-error Uses JS-Alerts module here
             swal({
                 title: title,
                 text: text,
@@ -84,8 +87,8 @@ export class SuperjojoUtilsAlert {
     }
 
 
-    static showToast(options: StubegruToastOptions) {
-        let toastId = `alert_toast_${Alert.TOAST_ID++}`;
+    static showToast(options: SwuToastOptions) {
+        let toastId = `alert_toast_${SwuAlert.TOAST_ID++}`;
         let html = `<div class="alert alert-${options.bootstrapClass} alert-dismissible" role="alert" id="${toastId}" style="display:none;">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -94,31 +97,31 @@ export class SuperjojoUtilsAlert {
                         ${options.text}
                     </div>`;
 
-        Stubegru.dom.querySelector("#stubegruToastsContainer").insertAdjacentHTML("beforeend", html);
-        Stubegru.dom.slideDown(`#${toastId}`);
-        setTimeout(() => Stubegru.dom.querySelector(`#${toastId}`).remove(), Alert.TOAST_LIVETIME);
+        SwuDom.querySelector("#swuToastsContainer").insertAdjacentHTML("beforeend", html);
+        SwuDom.slideDown(`#${toastId}`);
+        setTimeout(() => SwuDom.querySelector(`#${toastId}`).remove(), SwuAlert.TOAST_LIVETIME);
     }
 
 }
 
-export interface StubegruAlertOptions {
+export interface SwuAlertOptions {
     text: string;
     type?: SweetAlertIcon;
     title?: string;
     mode?: "alert" | "toast";
 }
 
-interface SweetAlertOptions {
+export interface SweetAlertOptions {
     title: string;
     text: string;
     type: SweetAlertIcon;
     html: boolean;
 }
 
-interface StubegruToastOptions extends SweetAlertOptions {
+export interface SwuToastOptions extends SweetAlertOptions {
     bootstrapClass: "success" | "info" | "warning" | "danger" | string;
 }
 
-type SweetAlertIcon = "success" | "warning" | "error" | "info";
+export type SweetAlertIcon = "success" | "warning" | "error" | "info";
 
-await Alert.init();
+await SwuAlert.init();

@@ -2,14 +2,14 @@
 export class TableSortable {
 
     table;
-    options = {
+    options:TableOptions = {
         data: [],
         columns: {},
-        rowsPerPage: undefined,
+        rowsPerPage: 0,
         pagination: true,
         nextText: "<i class='fas fa-angle-right'>",
         prevText: "<i class='fas fa-angle-left'>",
-        searchField: undefined,
+        searchField: null,
         tableDidUpdate: undefined,
     };
 
@@ -64,6 +64,7 @@ export interface TableOptions {
     nextText: string;
     prevText: string;
     searchField: HTMLElement | null;
+    tableDidUpdate: Function | undefined
 }
 
 type SortingDirection = "asc" | "desc";

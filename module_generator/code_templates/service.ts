@@ -1,32 +1,32 @@
+import { SwuFetch, SwuHttpResponse } from "../../utils/swu_fetch.ts";
 import { xxxEntityxxx } from "./model.ts";
-import { SuperjojoHttpResponse, SuperjojoUtilsFetch } from "./superjojo_utils.ts";
 
 export default class xxxEntityxxxService {
 
     //TODO: Use more than GET and POST (update SUFetch)
 
     async getAllxxxEntityxxx() {
-        return await SuperjojoUtilsFetch.getJson("xxxentityxxx") as xxxEntityxxx[];
+        return await SwuFetch.getJson("xxxentityxxx") as xxxEntityxxx[];
     }
 
     async getxxxEntityxxx(xxxentityxxxId: string) {
-        return await SuperjojoUtilsFetch.getJson(`xxxentityxxx/${xxxentityxxxId}`) as xxxEntityxxx;
+        return await SwuFetch.getJson(`xxxentityxxx/${xxxentityxxxId}`) as xxxEntityxxx;
     }
 
     async updatexxxEntityxxx(xxxentityxxxData: xxxEntityxxx) {
-        let resp = await SuperjojoUtilsFetch.postJson(`xxxentityxxx/${xxxentityxxxData.id}`, xxxentityxxxData) as SuperjojoHttpResponse;
+        let resp = await SwuFetch.postJson(`xxxentityxxx/${xxxentityxxxData.id}`, xxxentityxxxData) as SwuHttpResponse;
         if (resp.status == "error") { throw new Error(resp.message) };
         return resp;
     }
 
     async createxxxEntityxxx(xxxentityxxxData: Omit<xxxEntityxxx, "id">) {
-        let resp = await SuperjojoUtilsFetch.postJson(`xxxentityxxx`, xxxentityxxxData) as SuperjojoHttpResponse;
+        let resp = await SwuFetch.postJson(`xxxentityxxx`, xxxentityxxxData) as SwuHttpResponse;
         if (resp.status == "error") { throw new Error(resp.message) };
         return resp;
     }
 
     async deletexxxEntityxxx(xxxentityxxxId: string) {
-        let resp = await SuperjojoUtilsFetch.getJson(`xxxentityxxx/${xxxentityxxxId}`) as SuperjojoHttpResponse;
+        let resp = await SwuFetch.getJson(`xxxentityxxx/${xxxentityxxxId}`) as SwuHttpResponse;
         if (resp.status == "error") { throw new Error(resp.message) };
         return resp;
     }

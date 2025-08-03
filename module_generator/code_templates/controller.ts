@@ -1,5 +1,5 @@
 import xxxEntityxxxModule from "./module.ts";
-import { SuperjojoUtilsAlert } from "./superjojo_utils.ts";
+import { SwuAlert } from "../../utils/swu_alert.ts";
 
 export default class xxxEntityxxxController {
 
@@ -14,7 +14,7 @@ export default class xxxEntityxxxController {
             let xxxentityxxxList = await xxxEntityxxxModule.service.getAllxxxEntityxxx();
             xxxEntityxxxModule.view.updateListView(xxxentityxxxList);
         } catch (error) {
-            SuperjojoUtilsAlert.alertError(error);
+            SwuAlert.alertError(error);
         }
     }
 
@@ -24,10 +24,10 @@ export default class xxxEntityxxxController {
             let xxxentityxxxData = xxxEntityxxxModule.view.getModalFormData();
             xxxentityxxxData.id = xxxentityxxxId;
             const resp = await xxxEntityxxxModule.service.updatexxxEntityxxx(xxxentityxxxData);
-            SuperjojoUtilsAlert.alertResp(resp, "Saving xxxEntityDisplayNamexxx");
+            SwuAlert.alertResp(resp, "Saving xxxEntityDisplayNamexxx");
             xxxEntityxxxModule.view.modal.hide(); //refresh xxxentityxxx list via hide event
         } catch (error) {
-            SuperjojoUtilsAlert.alertError(error);
+            SwuAlert.alertError(error);
         }
 
     }
@@ -36,22 +36,22 @@ export default class xxxEntityxxxController {
         try {
             let xxxentityxxxData = xxxEntityxxxModule.view.getModalFormData();
             const resp = await xxxEntityxxxModule.service.createxxxEntityxxx(xxxentityxxxData);
-            SuperjojoUtilsAlert.alertResp(resp, "Create xxxEntityDisplayNamexxx");
+            SwuAlert.alertResp(resp, "Create xxxEntityDisplayNamexxx");
             xxxEntityxxxModule.view.modal.hide(); //refresh xxxentityxxx list via hide event
         } catch (error) {
-            SuperjojoUtilsAlert.alertError(error);
+            SwuAlert.alertError(error);
         }
 
     }
 
     async handlexxxEntityxxxDelete(xxxentityxxxId: string) {
         try {
-            let confirmResp = await SuperjojoUtilsAlert.deleteConfirm("Nutzeraccount löschen", "Soll der Nutzeraccount wirklich gelöscht werden?");
+            let confirmResp = await SwuAlert.deleteConfirm("Nutzeraccount löschen", "Soll der Nutzeraccount wirklich gelöscht werden?");
             let resp = await xxxEntityxxxModule.service.deletexxxEntityxxx(xxxentityxxxId);
-            SuperjojoUtilsAlert.alertResp(resp, "Nutzeraccount Löschen");
+            SwuAlert.alertResp(resp, "Nutzeraccount Löschen");
             await this.refreshxxxEntityxxxList();
         } catch (error) {
-            SuperjojoUtilsAlert.alertError(error);
+            SwuAlert.alertError(error);
         }
     }
 
@@ -64,7 +64,7 @@ export default class xxxEntityxxxController {
             });
             xxxEntityxxxModule.view.modal.show();
         } catch (error) {
-            SuperjojoUtilsAlert.alertError(error);
+            SwuAlert.alertError(error);
         }
     }
 
@@ -73,10 +73,9 @@ export default class xxxEntityxxxController {
             xxxEntityxxxModule.view.setModalSubmitEvent(() => {
                 xxxEntityxxxModule.controller.handlexxxEntityxxxCreate();
             });
-            xxxEntityxxxModule.view.generatePermissionToggles([]);
             xxxEntityxxxModule.view.modal.show();
         } catch (error) {
-            SuperjojoUtilsAlert.alertError(error);
+            SwuAlert.alertError(error);
         }
     }
 

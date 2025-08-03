@@ -1,4 +1,4 @@
-export class SuperjojoUtilsFetch {
+export class SwuFetch {
 
     /**
      * Fetch a resource from Server using fetch API with method POST
@@ -6,7 +6,7 @@ export class SuperjojoUtilsFetch {
      * @param data Payload as key value list (will be converted to FormData)
      */
     static async post(url: string, data: Object): Promise<Response> {
-        let formData = SuperjojoUtilsFetch.objectToFormData(data);
+        let formData = SwuFetch.objectToFormData(data);
 
         let resp = await fetch(`${process.env.BASE_URL}/${url}`, {
             method: 'POST',
@@ -34,7 +34,7 @@ export class SuperjojoUtilsFetch {
      * @param data Payload as key value list (will be converted to FormData)
      */
     static async postJson(url: string, data: Object): Promise<Object> {
-        let resp = await SuperjojoUtilsFetch.post(url, data);
+        let resp = await SwuFetch.post(url, data);
         let parsedResp = await resp.json();
         return parsedResp;
     }
@@ -45,7 +45,7 @@ export class SuperjojoUtilsFetch {
     * @param data Payload as key value list (will be converted to queryString)
     */
     static async getJson(url: string, data?: Object): Promise<Object> {
-        let resp = await SuperjojoUtilsFetch.get(url, data);
+        let resp = await SwuFetch.get(url, data);
         let parsedResp = await resp.json();
         return parsedResp;
     }
@@ -56,7 +56,7 @@ export class SuperjojoUtilsFetch {
      * @param data Payload as key value list (will be converted to FormData)
      */
     static async postText(url: string, data: Object): Promise<string> {
-        let resp = await SuperjojoUtilsFetch.post(url, data);
+        let resp = await SwuFetch.post(url, data);
         let parsedResp = await resp.text();
         return parsedResp;
     }
@@ -67,7 +67,7 @@ export class SuperjojoUtilsFetch {
     * @param data Payload as key value list (will be converted to queryString)
     */
     static async getText(url: string, data?: Object): Promise<string> {
-        let resp = await SuperjojoUtilsFetch.get(url, data);
+        let resp = await SwuFetch.get(url, data);
         let parsedResp = await resp.text();
         return parsedResp;
     }
@@ -84,7 +84,7 @@ export class SuperjojoUtilsFetch {
 
 }
 
-export interface SuperjojoHttpResponse {
+export interface SwuHttpResponse {
     mode?: "alert" | "toast";
     title?: string;
     status: string;
