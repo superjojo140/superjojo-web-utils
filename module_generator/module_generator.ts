@@ -61,9 +61,9 @@ async function promptForEntityDisplayName() {
     // Ensure the entity directory exists
     if (!fs.existsSync(entityDir)) {
         fs.mkdirSync(entityDir);
-        console.log(`✅ Created directory: ${entityName}`);
+        console.log(chalk.greenBright(`📁 Created directory: ${entityName}`));
     } else {
-        console.log(`⚠️ Directory ${entityName} already exists, skipping creation.`);
+        console.log(chalk.yellowBright(`⚠️ Directory ${entityName} already exists, skipping creation.`));
     }
 
     // Read template files from code_templates/ and replace xxx tokens with the actual entity name
@@ -120,12 +120,13 @@ async function promptForEntityDisplayName() {
         const filePath = path.join(entityDir, file.name);
         if (!fs.existsSync(filePath)) {
             fs.writeFileSync(filePath, file.content, { encoding: 'utf8' });
-            console.log(chalk.greenBright(`✅ Created ${entityName}/${file.name}`));
+            console.log(chalk.greenBright(`📄 Created ${entityName}/${file.name}`));
         } else {
-            console.log(`${entityName}/${file.name} already exists, skipping.`);
+            console.log(chalk.yellowBright(`${entityName}/${file.name} already exists, skipping.`));
         }
     });
 
+    console.log(chalk.bold(chalk.greenBright(`\n✅ Created ${entityName} Module successfully!\n`)));
     console.log(`ℹ️  Make sure to define ${chalk.bold("process.env.BASE_URL")} because the generated code depends on it.`);
 
 })();

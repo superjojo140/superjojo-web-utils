@@ -80,10 +80,10 @@ async function promptForEntityDisplayName() {
     // Ensure the entity directory exists
     if (!fs.existsSync(entityDir)) {
         fs.mkdirSync(entityDir);
-        console.log(`✅ Created directory: ${entityName}`);
+        console.log(chalk_1.default.greenBright(`📁 Created directory: ${entityName}`));
     }
     else {
-        console.log(`⚠️ Directory ${entityName} already exists, skipping creation.`);
+        console.log(chalk_1.default.yellowBright(`⚠️ Directory ${entityName} already exists, skipping creation.`));
     }
     // Read template files from code_templates/ and replace xxx tokens with the actual entity name
     const templatesDir = path.join(__dirname, 'code_templates');
@@ -129,11 +129,12 @@ async function promptForEntityDisplayName() {
         const filePath = path.join(entityDir, file.name);
         if (!fs.existsSync(filePath)) {
             fs.writeFileSync(filePath, file.content, { encoding: 'utf8' });
-            console.log(chalk_1.default.greenBright(`✅ Created ${entityName}/${file.name}`));
+            console.log(chalk_1.default.greenBright(`📄 Created ${entityName}/${file.name}`));
         }
         else {
-            console.log(`${entityName}/${file.name} already exists, skipping.`);
+            console.log(chalk_1.default.yellowBright(`${entityName}/${file.name} already exists, skipping.`));
         }
     });
+    console.log(chalk_1.default.bold(chalk_1.default.greenBright(`\n✅ Created ${entityName} Module successfully!\n`)));
     console.log(`ℹ️  Make sure to define ${chalk_1.default.bold("process.env.BASE_URL")} because the generated code depends on it.`);
 })();
