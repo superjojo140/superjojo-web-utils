@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "CommonJS",
-    "outDir": "dist",
     "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
@@ -15,6 +14,7 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "module_generator/code_templates/*",
   ]
 }
