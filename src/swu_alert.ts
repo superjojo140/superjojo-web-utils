@@ -1,5 +1,5 @@
-import { SwuDom } from "./swu_dom.ts";
-import { SwuHttpResponse } from "./swu_fetch.ts";
+import { SwuDom } from "./swu_dom";
+import { SwuHttpResponse } from "./swu_fetch";
 //TODO: Load sweetalert
 
 export class SwuAlert {

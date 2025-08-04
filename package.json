@@ -1,31 +1,31 @@
 {
-  "name": "superjojo-web-utils",
-  "version": "0.0.1",
-  "description": "Framework for building fast and easy web micorservices",
-  "homepage": "https://github.com/superjojo140/superjojo-web-utils#readme",
+  "name": "swu-core",
+  "version": "1.0.0",
+  "description": "Superjojo web utils: Framework for building fast and easy web micorservices",
+  "homepage": "https://github.com/superjojo140/swu-core#readme",
   "bugs": {
-    "url": "https://github.com/superjojo140/superjojo-web-utils/issues"
+    "url": "https://github.com/superjojo140/swu-core/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/superjojo140/superjojo-web-utils.git"
+    "url": "git+https://github.com/superjojo140/swu-core.git"
   },
   "license": "MIT",
-  "author": "superjojo140",
-  "type": "commonjs",
-  "main": "index.js",
+  "author": "superjojo140 <github@superjojo.de>",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "dependencies": {
     "@types/bootstrap": "^5.2.10",
-    "@types/chalk": "^0.4.31",
-    "@types/inquirer": "^9.0.8",
-    "@types/node": "^24.1.0",
     "@types/sweetalert": "^1.1.28",
     "bootstrap": "^5.3.7",
-    "chalk": "^5.4.1",
-    "inquirer": "^12.9.0",
     "sweetalert": "^2.1.2"
-  }
+  },
+  "devDependencies": {}
 }

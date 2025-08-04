@@ -1,4 +1,5 @@
-import { SwuFetch } from "./swu_fetch.ts";
+import SwuCore from "./index.js";
+import { SwuFetch } from "./swu_fetch";
 
 export class SwuDom {
 
@@ -116,7 +117,7 @@ export class SwuDom {
      * @param path Path to HTML file relative to BASE_URL/${path}
      * @param selector Selector of the element to append the loaded html, @default "body"
      */
-    static async loadHtml(path, selector = "body") {
+    static async loadHtml(path: string, selector = "body") {
         let html = await SwuFetch.getText(path);
         SwuDom.querySelector(selector).insertAdjacentHTML("beforeend", html);
     }
@@ -125,10 +126,10 @@ export class SwuDom {
      * Load remote CSS and append to current document
      * @param path Path to HTML file relative to BASE_URL/${path}
      */
-    static async loadCss(path) {
+    static async loadCss(path: string) {
         return new Promise(function (resolve, reject) {
             let cssElem = document.createElement("link");
-            cssElem.href = `${process.env.BASE_URL}/${path}`;
+            cssElem.href = `${SwuCore.baseUrl}/${path}`;
             cssElem.rel = "stylesheet";
             cssElem.addEventListener('load', resolve);
             document.head.appendChild(cssElem);

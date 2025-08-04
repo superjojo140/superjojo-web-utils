@@ -1,3 +1,5 @@
+import SwuCore from "./index.js";
+
 export class SwuFetch {
 
     /**
@@ -5,10 +7,10 @@ export class SwuFetch {
      * @param url Resource's URL relative to BASE_URL/${url}
      * @param data Payload as key value list (will be converted to FormData)
      */
-    static async post(url: string, data: Object): Promise<Response> {
+    static async post(url: string, data: Record<string, any>): Promise<Response> {
         let formData = SwuFetch.objectToFormData(data);
 
-        let resp = await fetch(`${process.env.BASE_URL}/${url}`, {
+        let resp = await fetch(`${SwuCore.baseUrl}/${url}`, {
             method: 'POST',
             body: formData
         });
@@ -20,10 +22,10 @@ export class SwuFetch {
     * @param url Resource's URL relative to BASE_URL/${url}
     * @param data Payload as key value list (will be converted to queryString)
     */
-    static async get(url: string, data?: Object): Promise<Response> {
+    static async get(url: string, data?: Record<string, any>): Promise<Response> {
         let queryString = data ? "?" + new URLSearchParams(Object.entries(data)).toString() : "";
 
-        let resp = await fetch(`${process.env.BASE_URL}/${url}${queryString}`);
+        let resp = await fetch(`${SwuCore.baseUrl}/${url}${queryString}`);
         return resp;
     }
 
@@ -33,7 +35,7 @@ export class SwuFetch {
      * @param url Resource's URL relative to BASE_URL/${url}
      * @param data Payload as key value list (will be converted to FormData)
      */
-    static async postJson(url: string, data: Object): Promise<Object> {
+    static async postJson(url: string, data: Record<string, any>): Promise<Object> {
         let resp = await SwuFetch.post(url, data);
         let parsedResp = await resp.json();
         return parsedResp;
@@ -44,7 +46,7 @@ export class SwuFetch {
     * @param url Resource's URL relative to BASE_URL/${url}
     * @param data Payload as key value list (will be converted to queryString)
     */
-    static async getJson(url: string, data?: Object): Promise<Object> {
+    static async getJson(url: string, data?: Record<string, any>): Promise<Object> {
         let resp = await SwuFetch.get(url, data);
         let parsedResp = await resp.json();
         return parsedResp;
@@ -55,7 +57,7 @@ export class SwuFetch {
      * @param url Resource's URL relative to BASE_URL/${url}
      * @param data Payload as key value list (will be converted to FormData)
      */
-    static async postText(url: string, data: Object): Promise<string> {
+    static async postText(url: string, data: Record<string, any>): Promise<string> {
         let resp = await SwuFetch.post(url, data);
         let parsedResp = await resp.text();
         return parsedResp;
@@ -73,7 +75,7 @@ export class SwuFetch {
     }
 
 
-    private static objectToFormData(o: Object) {
+    private static objectToFormData(o: Record<string, any>) {
         let formData = new FormData();
         for (const key in o) {
             const value = o[key];

@@ -1,4 +1,4 @@
-
+//TODO: How is the real table-sortable code injected???
 export class TableSortable {
 
     table;
