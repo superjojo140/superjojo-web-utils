@@ -1,4 +1,3 @@
-import SwuCore from "./index.js";
 import { SwuFetch } from "./swu_fetch";
 
 export class SwuDom {
@@ -129,7 +128,7 @@ export class SwuDom {
     static async loadCss(path: string) {
         return new Promise(function (resolve, reject) {
             let cssElem = document.createElement("link");
-            cssElem.href = `${SwuCore.baseUrl}/${path}`;
+            cssElem.href = path;
             cssElem.rel = "stylesheet";
             cssElem.addEventListener('load', resolve);
             document.head.appendChild(cssElem);

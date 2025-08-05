@@ -1,4 +1,3 @@
-import SwuCore from "./index.js";
 
 export class SwuFetch {
 
@@ -10,7 +9,7 @@ export class SwuFetch {
     static async post(url: string, data: Record<string, any>): Promise<Response> {
         let formData = SwuFetch.objectToFormData(data);
 
-        let resp = await fetch(`${SwuCore.baseUrl}/${url}`, {
+        let resp = await fetch(url, {
             method: 'POST',
             body: formData
         });
@@ -25,7 +24,7 @@ export class SwuFetch {
     static async get(url: string, data?: Record<string, any>): Promise<Response> {
         let queryString = data ? "?" + new URLSearchParams(Object.entries(data)).toString() : "";
 
-        let resp = await fetch(`${SwuCore.baseUrl}/${url}${queryString}`);
+        let resp = await fetch(`${url}${queryString}`);
         return resp;
     }
 
