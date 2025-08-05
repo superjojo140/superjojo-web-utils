@@ -1,6 +1,6 @@
 import { SwuDom } from "./swu_dom";
 import { SwuHttpResponse } from "./swu_fetch";
-//TODO: Load sweetalert
+import swal from 'sweetalert';
 
 export class SwuAlert {
 
@@ -15,8 +15,8 @@ export class SwuAlert {
     static TOAST_ID = 0;
 
     static async init() {
-        //TODO: fix this
-        await SwuDom.loadHtml("components/alert/module.html");
+        //Add toast container to site's html
+        SwuDom.querySelector("body").insertAdjacentHTML("beforeend", `<div id="swu_alert_toast_container" style="position: fixed; bottom: 5px; left: 10px; z-index: 10000;"></div>`);
     }
 
     static async alertResp(resp: SwuHttpResponse, title?: string) {
