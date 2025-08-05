@@ -22,10 +22,11 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@types/bootstrap": "^5.2.10",
-    "@types/sweetalert": "^1.1.28",
     "bootstrap": "^5.3.7",
     "sweetalert": "^2.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/sweetalert": "^1.1.28"
+  }
 }
