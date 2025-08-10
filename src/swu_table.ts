@@ -1,4 +1,5 @@
 import { ColumnDefinition, Tabulator } from "tabulator-tables";
+import 'tabulator-tables/dist/css/tabulator_bootstrap5.min.css';
 
 export class SwuTable {
 

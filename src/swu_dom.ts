@@ -1,6 +1,10 @@
 import { SwuFetch } from "./swu_fetch.js";
 
+type ListenerEntry = { type: string, callback: EventListener };
+
 export class SwuDom {
+
+    static listenersMap: WeakMap<HTMLElement, ListenerEntry[]> = new WeakMap();
 
 
     /**
@@ -17,13 +21,39 @@ export class SwuDom {
     }
 
     static addEventListener(target: HTMLElement | string, eventType: string, callback: Function) {
-        //@ts-expect-error
-        $(target).on(eventType, callback);
+        // Store event listeners in a WeakMap
+        let elem = (typeof target === "string") ? SwuDom.querySelector(target) : target;
+        if (!elem) return;
+
+        const eventListener = callback as EventListener;
+        elem.addEventListener(eventType, eventListener);
+
+        const listeners = SwuDom.listenersMap.get(elem) || [];
+        listeners.push({ type: eventType, callback: eventListener });
+        SwuDom.listenersMap.set(elem, listeners);
     }
 
     static removeEventListener(target: HTMLElement | string, eventType?: string) {
-        //@ts-expect-error
-        $(target).off(eventType);
+        // Handle event listeners in a WeakMap
+        let elem = (typeof target === "string") ? SwuDom.querySelector(target) : target;
+        if (!elem) return;
+
+        if (eventType) {
+            const listeners = SwuDom.listenersMap.get(elem) || [];
+            // Remove all listeners for this eventType
+            for (const entry of listeners.filter(l => l.type === eventType)) {
+                elem.removeEventListener(entry.type, entry.callback);
+            }
+            // Remove from map
+            SwuDom.listenersMap.set(elem, listeners.filter(l => l.type !== eventType));
+        } else {
+            // Remove all event listeners for this element
+            const listeners = SwuDom.listenersMap.get(elem) || [];
+            for (const entry of listeners) {
+                elem.removeEventListener(entry.type, entry.callback);
+            }
+            SwuDom.listenersMap.delete(elem);
+        }
     }
 
     static slideUp = (target: HTMLElement | string, duration = 500) => {
