@@ -1,5 +1,5 @@
-import { SwuDom } from "./swu_dom";
-import { SwuHttpResponse } from "./swu_fetch";
+import { SwuDom } from "./swu_dom.js";
+import { SwuHttpResponse } from "./swu_fetch.js";
 import swal from 'sweetalert';
 
 export class SwuAlert {
@@ -34,7 +34,7 @@ export class SwuAlert {
         await SwuAlert.alert({ text: text });
     }
 
-    static async alertError(error: Error) {
+    static async alertError(error: any) {
         console.error(error);
         await SwuAlert.alert({
             text: error.message,

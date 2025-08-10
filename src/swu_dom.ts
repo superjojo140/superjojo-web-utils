@@ -1,4 +1,4 @@
-import { SwuFetch } from "./swu_fetch";
+import { SwuFetch } from "./swu_fetch.js";
 
 export class SwuDom {
 
