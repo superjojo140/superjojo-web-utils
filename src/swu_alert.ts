@@ -1,6 +1,7 @@
 import { SwuDom } from "./swu_dom.js";
 import { SwuHttpResponse } from "./swu_fetch.js";
 import swal from 'sweetalert';
+import "sweetalert/dist/sweetalert.css";
 
 export class SwuAlert {
 
@@ -64,6 +65,7 @@ export class SwuAlert {
                 let toastOptions = swalOptions as SwuToastOptions;
                 toastOptions.bootstrapClass = SwuAlert.swalToBootstrapClass[swalOptions.type];
                 SwuAlert.showToast(toastOptions);
+                resolve(true);
             }
         });
     }
@@ -89,17 +91,16 @@ export class SwuAlert {
 
     static showToast(options: SwuToastOptions) {
         let toastId = `alert_toast_${SwuAlert.TOAST_ID++}`;
-        let html = `<div class="alert alert-${options.bootstrapClass} alert-dismissible" role="alert" id="${toastId}" style="display:none;">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>${options.title}</strong>
-                        ${options.text}
-                    </div>`;
+        let html = `
+            <div class="alert alert-${options.bootstrapClass} alert-dismissible fade show" role="alert" id="${toastId}" style="display:none;">
+                <strong>${options.title}</strong>
+                ${options.text}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>`
 
-        SwuDom.querySelector("#swuToastsContainer").insertAdjacentHTML("beforeend", html);
+        SwuDom.querySelector("#swu_alert_toast_container").insertAdjacentHTML("beforeend", html);
         SwuDom.slideDown(`#${toastId}`);
-        setTimeout(() => SwuDom.querySelector(`#${toastId}`).remove(), SwuAlert.TOAST_LIVETIME);
+        setTimeout(() => SwuDom.querySelector(`#${toastId}`)?.remove(), SwuAlert.TOAST_LIVETIME);
     }
 
 }
