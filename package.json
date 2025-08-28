@@ -1,6 +1,6 @@
 {
   "name": "swu-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Superjojo web utils: Framework for building fast and easy web micorservices",
   "homepage": "https://github.com/superjojo140/swu-core#readme",
   "bugs": {
